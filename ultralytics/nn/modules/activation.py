@@ -19,3 +19,15 @@ class AGLU(nn.Module):
         """Compute the forward pass of the Unified activation function."""
         lam = torch.clamp(self.lambd, min=0.0001)
         return torch.exp((1 / lam) * self.act((self.kappa * x) - torch.log(lam)))
+
+class GeneralizedSigmoid(nn.Module):
+    """# Define the Generalized Sigmoid Activation Function in PyTorch"""
+
+    def __init__(self, a=1.0, b=0.0, c=1.0):
+        super().__init__()
+        self.a = a
+        self.b = b
+        self.c = c
+
+    def forward(self, x):
+        return 1 / (1 + torch.exp(-self.a * (x - self.b)**self.c))
