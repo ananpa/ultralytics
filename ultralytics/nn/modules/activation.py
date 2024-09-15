@@ -29,5 +29,8 @@ class GeneralizedSigmoid(nn.Module):
         self.b = b
         self.c = c
 
-    def forward(self, x):
+    def forward(self, x: torch.Tensor) -> torch.Tensor:
         return 1 / (1 + torch.exp(-self.a * (x - self.b)**self.c))
+
+    def __repr__(self):
+        return f'GeneralizedSigmoid(a={self.a}, b={self.b}, c={self.c})'
