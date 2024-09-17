@@ -37,7 +37,7 @@ def autopad(k, p=None, d=1):  # kernel, padding, dilation
 class Conv(nn.Module):
     """Standard convolution with args(ch_in, ch_out, kernel, stride, padding, groups, dilation, activation)."""
 
-    default_act = GeneralizedSigmoid(a=1.00, b=1.25, c=1.0)  # default activation
+    default_act = GeneralizedSigmoid(a=1.00, b=1.50, c=1.0)  # default activation
 
     def __init__(self, c1, c2, k=1, s=1, p=None, g=1, d=1, act=True):
         """Initialize Conv layer with given arguments including activation."""
@@ -118,7 +118,7 @@ class DWConvTranspose2d(nn.ConvTranspose2d):
 class ConvTranspose(nn.Module):
     """Convolution transpose 2d layer."""
 
-    default_act = GeneralizedSigmoid(a=1.00, b=1.25, c=1.0)  # default activation
+    default_act = GeneralizedSigmoid(a=1.00, b=1.50, c=1.0)  # default activation
 
     def __init__(self, c1, c2, k=2, s=2, p=0, bn=True, act=True):
         """Initialize ConvTranspose2d layer with batch normalization and activation function."""
@@ -179,7 +179,7 @@ class RepConv(nn.Module):
     Based on https://github.com/DingXiaoH/RepVGG/blob/main/repvgg.py
     """
 
-    default_act = GeneralizedSigmoid(a=1.00, b=1.25, c=1.0)  # default activation
+    default_act = GeneralizedSigmoid(a=1.00, b=1.50, c=1.0)  # default activation
 
     def __init__(self, c1, c2, k=3, s=1, p=1, g=1, d=1, act=True, bn=False, deploy=False):
         """Initializes Light Convolution layer with inputs, outputs & optional activation function."""
@@ -282,7 +282,7 @@ class ChannelAttention(nn.Module):
         super().__init__()
         self.pool = nn.AdaptiveAvgPool2d(1)
         self.fc = nn.Conv2d(channels, channels, 1, 1, 0, bias=True)
-        self.act = GeneralizedSigmoid(a=1.00, b=1.25, c=1.0)
+        self.act = GeneralizedSigmoid(a=1.00, b=1.50, c=1.0)
 
     def forward(self, x: torch.Tensor) -> torch.Tensor:
         """Applies forward pass using activation on convolutions of the input, optionally using batch normalization."""
@@ -298,7 +298,7 @@ class SpatialAttention(nn.Module):
         assert kernel_size in {3, 7}, "kernel size must be 3 or 7"
         padding = 3 if kernel_size == 7 else 1
         self.cv1 = nn.Conv2d(2, 1, kernel_size, padding=padding, bias=False)
-        self.act = GeneralizedSigmoid(a=1.00, b=1.25, c=1.0)
+        self.act = GeneralizedSigmoid(a=1.00, b=1.50, c=1.0)
 
     def forward(self, x):
         """Apply channel and spatial attention on input for feature recalibration."""
