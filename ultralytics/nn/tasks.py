@@ -77,6 +77,7 @@ from ultralytics.utils.torch_utils import (
     scale_img,
     time_sync,
 )
+from ultralytics.nn.modules.activation import Smish
 
 try:
     import thop
