@@ -78,6 +78,8 @@ from ultralytics.utils.torch_utils import (
     time_sync,
 )
 from ultralytics.nn.modules.activation import Smish
+from ultralytics.nn.modules.activation import ReLUELU
+from ultralytics.nn.modules.activation import ReLUSiLU
 
 try:
     import thop
