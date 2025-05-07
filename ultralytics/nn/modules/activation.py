@@ -3,7 +3,7 @@
 
 import torch
 import torch.nn as nn
-
+import torch.nn.functional as F
 
 class AGLU(nn.Module):
     """Unified activation function module from https://github.com/kostas1515/AGLU."""
