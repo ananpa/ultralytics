@@ -20,6 +20,21 @@ class AGLU(nn.Module):
         lam = torch.clamp(self.lambd, min=0.0001)
         return torch.exp((1 / lam) * self.act((self.kappa * x) - torch.log(lam)))
 
+class GSigmoidV1(nn.Module):
+    """
+    output = 1 / [1 + exp(-alpha * (x - beta))]
+    """
+    def __init__(self, alpha_init=1.0, beta_init=0.0):
+        super().__init__()
+        self.alpha = alpha_init
+        self.beta = beta_init
+
+    def forward(self, x):
+        return 1.0 / (1.0 + torch.exp(-self.alpha * (x - self.beta)))
+    
+    def __repr__(self):
+        return f'GSigmoidV1(alpha={self.alpha}, beta={self.beta})'
+
 class GeneralizedSigmoid(nn.Module):
     """
     output = 1 / [1 + exp(-alpha * (x - beta))]
