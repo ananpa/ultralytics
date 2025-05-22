@@ -78,6 +78,7 @@ from ultralytics.utils.torch_utils import (
     time_sync,
 )
 from ultralytics.nn.modules.activation import GSigmoidV1
+from ultralytics.nn.modules.activation import PELU
 from ultralytics.nn.modules.activation import Smish
 from ultralytics.nn.modules.activation import ReLUELU
 from ultralytics.nn.modules.activation import ReLUSiLU
