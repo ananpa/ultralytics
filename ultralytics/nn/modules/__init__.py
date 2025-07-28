@@ -83,6 +83,8 @@ from .transformer import (
     TransformerLayer,
 )
 
+from .learnable_fusion import LearnableFusion
+
 __all__ = (
     "Conv",
     "Conv2",
@@ -150,4 +152,5 @@ __all__ = (
     "Attention",
     "PSA",
     "SCDown",
+    "LearnableFusion",
 )
