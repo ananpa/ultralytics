@@ -24,10 +24,9 @@ class LearnableFusion(nn.Module):
 
     def forward(self, xs): # xs = list[Tensor] length N
         assert len(xs) == self.n
-        if self.mode == "scalar":
-            alpha = F.softmax(self.w, dim=0) # (N,)
-            out  = sum(a * x for a, x in zip(alpha, xs))
-        else:
-            alpha = F.softmax(self.w, dim=0) # (N,1,1,1)
-            out  = sum(a * x for a, x in zip(alpha, xs))
-        return out
+        alpha = F.softmax(self.w, dim=0)     # convex weights
+        return sum(a * x for a, x in zip(alpha, xs))
+
+    def __repr__(self):
+        return f'LearnableFusion(mode={self.mode}, w={self.w})'
+    
